@@ -1,4 +1,4 @@
-# Kafka Homework-1
+# Kafka Homework-4
 
 Проект выполнен в рамках заданий по Apache Kafka.
 
@@ -25,7 +25,7 @@ homework-1/
 Перейти в корневую директорию проекта:
 
 ```bash
-cd homework-1
+cd homework-4
 ```
 
 Запустить Kafka, создать topic `orders`, а также собрать и запустить producer и consumer:

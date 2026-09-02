@@ -25,7 +25,7 @@ homework-1/
 Перейти в корневую директорию проекта:
 
 ```bash
-cd homework-1
+cd homework-2
 ```
 
 Запустить Kafka, создать topic `orders`, а также собрать и запустить producer и consumer:
