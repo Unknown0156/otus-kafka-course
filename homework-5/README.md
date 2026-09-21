@@ -1,20 +1,16 @@
-# Kafka Homework-4
+# Kafka Homework-5
 
 Проект выполнен в рамках заданий по Apache Kafka.
 
 ## Структура проекта
 
 ```text
-homework-4/
+homework-5/
 ├── docker-compose.yml
 ├── producer/
 │   ├── Dockerfile
 │   ├── requirements.txt
 │   └── producer.py
-├── consumer/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── consumer.py
 └── README.md
 ```
 
@@ -25,7 +21,7 @@ homework-4/
 Перейти в корневую директорию проекта:
 
 ```bash
-cd homework-4
+cd homework-5
 ```
 
 Запустить Kafka, создать topic `orders`, а также собрать и запустить producer и consumer:
@@ -53,15 +49,15 @@ docker compose down
 
 ## Документация
 
-### Почему Kafka может доставить сообщение повторно?
+### Какую проблему решает Transactional Outbox?
 
-Если Consumer обработал сообщение, но не успел подтвердить offset, Kafka считает сообщение необработанным и доставляет его повторно.
+Transactional Outbox гарантирует, что изменение в БД и событие для Kafka сохраняются атомарно. Если Kafka временно недоступна, событие не теряется и остаётся в Outbox для повторной отправки.
 
-### Как Inbox делает Consumer идемпотентным?
+### Почему недостаточно последовательно выполнить save() и producer.send()?
 
-Consumer сохраняет `eventId` обработанного сообщения в таблицу `inbox`. При повторной доставке он проверяет `eventId` и, если он уже есть в `inbox`, пропускает бизнес-операцию.
+Потому что между операциями может произойти сбой: запись в БД уже сохранится, а отправка в Kafka не выполнится. В результате состояние БД изменено, но соответствующее событие потеряно.
 
-## Проверка дубля и бизнес-операция должны
+## Проверка Transactional Outbox failure:
 
 Результат проверки зафиксирован на скриншоте логов:
-- [Consumers с одинаковым group.id](screenshots/consumer-inbox-duplicate.png)
+- [Transactional Outbox failure](screenshots/transactional-outbox-failure.png)

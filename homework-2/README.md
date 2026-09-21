@@ -5,7 +5,7 @@
 ## Структура проекта
 
 ```text
-homework-1/
+homework-2/
 ├── docker-compose.yml
 ├── producer/
 │   ├── Dockerfile
