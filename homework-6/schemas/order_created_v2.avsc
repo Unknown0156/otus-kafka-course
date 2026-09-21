@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "OrderCreated",
+  "namespace": "orders",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": "int"
+    },
+    {
+      "name": "userId",
+      "type": "int"
+    },
+    {
+      "name": "createdAt",
+      "type": "string",
+      "default": ""
+    }
+  ]
+}
